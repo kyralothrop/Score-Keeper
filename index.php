@@ -6,8 +6,6 @@
 	</head>
 	<body>
 		<h1>Score Keeper</h1>
-	</body>
-</html>
 
 <?php
 	require 'functions.php';	//must have functions.php file
@@ -19,14 +17,14 @@
 
 			while($row=$games->fetch(PDO::FETCH_ASSOC)){
 				echo "<tr>";
-				echo "<td>".$row['gameName']."</td>";
+				echo "<td><a href='../gamePage.php'>".$row['gameName']."</a></td>";
 				echo "</tr>";
 			}
 
 			echo "</tbody></table>";
 	}
 ?>
-
+<p><a href='../players.php'>List of players</a></p>
 
 <script>
 
@@ -35,3 +33,7 @@
 	} );
 
 </script>
+
+
+	</body>
+</html>
