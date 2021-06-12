@@ -12,7 +12,9 @@
       else{
           $error = $query->errorInfo();
           echo "MYSQL Error:". $error[2];
-        }
+      }
+
+			$conn = null;
   	}
 
 		function getAllPlayers() {
@@ -26,6 +28,27 @@
       else{
           $error = $query->errorInfo();
           echo "MYSQL Error:". $error[2];
-        }
+      }
+
+			$conn = null;
   	}
+
+		function createPlayer($playerName){
+			try {
+				$conn=useDatabase();
+				if($query=$conn->prepare("INSERT INTO players (playerName) VALUES (:playerName);")){
+          $queryArray = array(
+            'playerName'=>strip_tags($playerName),
+          );
+          $query->execute($queryArray);
+        }
+
+			}
+			catch(PDOException $e) {
+				echo "<p>here10</p>";
+  			echo "Error: " . $e->getMessage();
+			}
+
+			$conn = null;
+		}
 ?>

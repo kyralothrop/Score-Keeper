@@ -43,13 +43,21 @@
   <body>
     <a href='../index.php'>Main Page</a>
     <h1>List of Challengers</h1>
-    <button id="addPlayerBtn">Add a Player</button>
+    <button id="addPlayerBtn">Add Challenger</button>
 
     <!-- Add Player Modal-->
     <div id="addPlayerModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Modal</p>
+        <h2>Add Challenger</h2>
+
+        <form action="" method="POST">
+          <label for="playerName">Player name:</label><br>
+          <input type="text" name="playerName" required/><br>
+          <p>Player Image (to be added later)</p>
+          <input type="submit" value="submit" name="addPlayer"/>
+        </form>
+
       </div>
     </div>
 
@@ -70,8 +78,15 @@
 					echo "</tbody></table>";
 			}
 
-      ?>
+    ?>
 
+    <?php
+      if ($_POST && isset($_POST['addPlayer'])) {
+        echo "<p>here1</p>";
+        createPlayer($_POST['playerName']);	//update edited information to the database
+        echo "<script>window.open('players.php','_self') </script>";  //reload the page to update the table
+      }
+    ?>
 
     <script>
       var addPlayerModal = document.getElementById("addPlayerModal");
